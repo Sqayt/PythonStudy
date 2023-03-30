@@ -47,5 +47,37 @@ def short_words(words):
     return ' '.join(ans)
 
 
+# RLE
+def rle(s):
+    def pack(s, cnt):
+        if cnt > 1:
+            return s + str(cnt)
+        return s
+
+    last_sym = s[0]
+    last_pos = 0
+    ans = []
+    for i in range(1, len(s)):
+        if s[i] != last_sym:
+            ans.append(pack(last_sym, i - last_pos))
+            last_pos = i
+            last_sym = s[i]
+    ans.append(pack(s[last_pos], len(s) - last_pos))
+
+    return ''.join(ans)
+
+
+def easypeasy(s):
+    last_sym = s[0]
+    ans = []
+    for i in range(1, len(s)):
+        if s[i] != last_sym:
+            ans.append(last_sym)
+            last_sym = s[i]
+    ans.append(last_sym)
+
+    return ''.join(ans)
+
+
 if __name__ == '__main__':
     print(short_words(['aba', 'ab', 'c', 'd', 'e']))
