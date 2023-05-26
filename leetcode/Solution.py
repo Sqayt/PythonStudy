@@ -32,4 +32,42 @@ class Solution:
 
         return ret_val
 
+    def checkIfPangram(self, sentence):
+        sentence = sentence.lower()
+        lst = {}
+        for i in range(97, 123):
+            lst[i] = 0
 
+        for el in sentence:
+            d = ord(el)
+            lst[d] += 1
+
+        return 0 not in lst.values()
+
+    def sortPeople(self, names, heights):
+        tmp = {}
+
+        for i in range(len(heights)):
+            tmp[heights[i]] = names[i]
+
+        result = sorted(tmp.items(), reverse=True)
+        return [v for k, v in result]
+
+    def separateDigits(self, nums):
+        result = []
+        for num in nums:
+            result.append(self.convert(num))
+
+        return result
+
+    def convert(self, num):
+        tmp = []
+        while num > 1:
+            tmp.append(num)
+            num /= 10
+
+        return tmp
+
+
+if __name__ == '__main__':
+    print(Solution().separateDigits([13, 25, 83, 77]))
